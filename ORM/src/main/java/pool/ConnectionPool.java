@@ -11,6 +11,9 @@ public class ConnectionPool {
 
     {//创建连接池对象时给它赋值
         int minCount = ConfigurationReader.getIntValue("minCount");
+        if(minCount == 0){
+            minCount = 5;
+        }
         for(int i = 1; i<=minCount; i++){
             myConnList.add(new MyConnection());
         }
@@ -37,6 +40,9 @@ public class ConnectionPool {
         Connection result = this.getMC();
         int count = 1;
         int waitTime = ConfigurationReader.getIntValue("waitTime");
+        if(waitTime <= 0){
+            waitTime = 5;
+        }
         while (result == null && count<waitTime*10){
             try {
                 Thread.sleep(100);

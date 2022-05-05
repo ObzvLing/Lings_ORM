@@ -26,9 +26,6 @@ public class ConfigurationReader {
         return map.get(key);
     }
     public static int getIntValue(String key){
-        if(key == null){
-            key = "5";
-        }
         return Integer.parseInt(map.get(key));
     }
 }
